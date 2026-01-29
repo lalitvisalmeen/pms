@@ -1,0 +1,20 @@
+{
+    "id" : "ID",
+    "name" : "Name",
+    "created_at" : "Created Date",
+    "email" : "Email",
+    "user" : "User",
+    "actions" : "Actions",
+    "actions_btn" : {
+        "edit" : "Edit",
+        "delete" : "Delete"
+    },
+    "add_user_btn" : "Add New User",
+    "create_user" : "Create new User",
+    "cancel" : "Cancel",
+    "submit" : "Submit",
+    "confirm_delete_msg" : "Are you sure you want to delete this project?",
+    "confirm_pwd" : "Confirm Password",
+    "edit_user" : "Edit User"
+
+}

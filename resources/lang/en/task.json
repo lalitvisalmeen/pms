@@ -1,0 +1,21 @@
+{
+    "id" : "ID",
+    "name" : "Name",
+    "description" : "Description",
+    "created_at" : "Created Date",
+    "due_date" : "Due Date",
+    "status" : "Status",
+    "image_path" : "Image Path",
+    "created_by" : "Created By",
+    "actions" : "Actions",
+    "actions_btn" : {
+        "edit" : "Edit",
+        "delete" : "Delete"
+    },
+    "pending" : "Pending",
+    "in_progress" : "In Progress",
+    "completed" : "Completed"
+    
+
+
+}
