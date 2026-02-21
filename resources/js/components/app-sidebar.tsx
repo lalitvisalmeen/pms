@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
 import { index as projectIndex } from '@/routes/project/index';
-import { index as taskIndex } from '@/routes/task/index';
+import { myTasks, index as taskIndex } from '@/routes/task/index';
 import { index as userIndex } from '@/routes/user/index';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
@@ -38,6 +38,11 @@ const mainNavItems: NavItem[] = [
     {
         title: 'Users',
         href: userIndex(),
+        icon: LayoutGrid,
+    },
+    {
+        title : 'My Tasks',
+        href: myTasks(),
         icon: LayoutGrid,
     }
 ];

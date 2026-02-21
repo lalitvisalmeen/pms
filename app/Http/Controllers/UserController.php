@@ -6,7 +6,9 @@ use App\Helpers\CommonTasksHelper;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
+use App\Models\Task;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -83,7 +85,16 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $data = $request->validated();
+        $password = $data['password'] ?? null;
+        if($password){
+            $data["password"] = bcrypt($data["password"]);
+        }else{
+            unset($data["password"]);
+        }
+       
+       $user->update($data);
+       return to_route('user.index')->with(['success' => "User \"$user->name\" has been updated successfully"]);
     }
 
     /**
@@ -91,6 +102,14 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+
+        Task::whereIn(
+            'project_id',
+            $user->projects()->pluck('id')
+        )->delete();
+
+        $user->projects()->delete();
+        $user->delete();
+        return to_route('user.index')->with(['success' => "User has been deleted successfully"]);
     }
 }

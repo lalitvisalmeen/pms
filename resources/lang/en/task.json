@@ -7,6 +7,7 @@
     "status" : "Status",
     "image_path" : "Image Path",
     "created_by" : "Created By",
+    "updated_by" : "Updated By",
     "actions" : "Actions",
     "actions_btn" : {
         "edit" : "Edit",
@@ -14,8 +15,19 @@
     },
     "pending" : "Pending",
     "in_progress" : "In Progress",
-    "completed" : "Completed"
-    
-
+    "completed" : "Completed",
+    "add_task_btn" : "Add Task",
+    "task_image" : "Task Image",
+    "task" : "Task",
+    "high" : "High",
+    "medium" : "Medium",
+    "low" : "Low",
+    "priority" : "Priority",
+    "project_id" : "Project ID",
+    "assigned_user_id" : "Assigned User ID",
+    "create_task" : "Create new task",
+    "edit_task" : "Edit Task",
+    "confirm_delete_msg" : "Are you sure you want to delete this task?",
+    "project" : "Project"
 
 }

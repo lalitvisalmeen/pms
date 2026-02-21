@@ -62,12 +62,12 @@ export interface Tasks{
     'description' : string,
     'image_path' : string,
     'status' : string,
-   // 'priority' : string,
+    'priority' : string,
     'due_date' : string,
- //   'assigned_user_id' : number,
+    'assignedUser' : Users,
     'createdBy' : User,
     'updatedBy' : User,
-   // 'project_id' : number
+    'project' : Projects,
    'created_at' : string,
    "project" : Projects
 }
@@ -143,6 +143,7 @@ export interface IndexProps{
 export interface ShowProps{
     "project" : Projects,
     "tasks" : TaskResponse,
+    "task" : Tasks,
     "user" : Users,
     "queryParams" : Record<string, string | number | boolean | undefined> | null;
 }

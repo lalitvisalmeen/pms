@@ -1,7 +1,7 @@
 import { BreadcrumbItem, ShowProps } from "@/types";
-import { index as projectIndex, show as showProject} from '@/routes/project/index';
+import { index as projectIndex, show as showProject, edit as editProject} from '@/routes/project/index';
 import AppLayout from "@/layouts/app-layout";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import { useTranslation } from "@/hooks/use-translation";
 import { STATUS_CLASS_MAP, STATUS_TEXT_MAP } from '@/constants';
 import TasksTable from "../task/TasksTable";
@@ -20,6 +20,11 @@ export default function show({project, tasks, queryParams}: ShowProps){
     return(
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={`Project ${project.name}`} />
+            <div className= "my-6 px-10 flex justify-between items-center">
+                <Link href={editProject.url(project.id)} className="bg-black py-1 px-3 text-white font-bold rounded shadow transition-all">
+                    {trans("edit_project")}
+                </Link> 
+            </div>
             <div className="py-12">
                 <div>
                     <img src={project.image_path} alt= {project.name} className="w-full h-64 object-cover" />

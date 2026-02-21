@@ -64,7 +64,7 @@ export default function Index({users, queryParams = null, success}: IndexProps){
     return(
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="User Information" />
-           {success && <div className='border bg-muted px-3 py-2 m-3 rounded shadow'>
+           {success && <div className='border-blue-700 bg-blue-400 px-3 py-2 m-3 rounded shadow text-white font-bold'>
               {success}
             </div>}
             <div className= "my-6 px-10 flex justify-between items-center">

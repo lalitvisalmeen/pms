@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
@@ -14,10 +15,12 @@ Route::get('/', function () {
 })->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', fn() => Inertia::render('dashboard'))->name('dashboard');
+    Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
+    Route::get('/task/my-tasks', [TaskController::class, 'myTasks'])->name('task.myTasks');
     Route::resource('project',ProjectController::class);
     Route::resource('task', TaskController::class);
     Route::resource('user', UserController::class);
+    
 
 });
 

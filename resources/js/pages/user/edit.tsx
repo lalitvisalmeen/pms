@@ -25,12 +25,14 @@ export default function Edit({user}:ShowProps){
         name: string,
         email : string,
         password: string,
-        password_confirmation : string
+        password_confirmation : string,
+         _method : string
      }>({
         name: user.name,
         email : user.email,
         password: "",
-        password_confirmation : ''
+        password_confirmation : '',
+         _method : "PUT"
      });
 
      const onSubmit = (e: React.FormEvent) => {
@@ -61,14 +63,14 @@ export default function Edit({user}:ShowProps){
                         <InputError message={errors.email} className="mt-2" />
                     </div>
                     <div className="mt-4">
-                        <RequiredLabel forLabel="user_password" transMessage={trans('password')} required={true}></RequiredLabel>
+                        <RequiredLabel forLabel="user_password" transMessage={trans('password')} required={false}></RequiredLabel>
                         <Input type="password" id="user_pwd" name="password"
                             value={data.password} className="mt-1 block w-full border rounded"
                             onChange={(e) => setData('password', e.target.value)} />
                         <InputError message={errors.password} className="mt-2" />
                     </div>
                     <div className="mt-4">
-                        <RequiredLabel forLabel="confirm_pwd" transMessage={trans("confirm_pwd")} required={true}></RequiredLabel>
+                        <RequiredLabel forLabel="confirm_pwd" transMessage={trans("confirm_pwd")} required={false}></RequiredLabel>
                         <Input type="password" id="confirm_pwd" name="password_confirmation"
                             value={data.password_confirmation} className="mt-1 block w-full"
                             onChange={(e) => setData('password_confirmation', e.target.value)} />

@@ -9,3 +9,15 @@ export const STATUS_TEXT_MAP : Record<string , string>= {
     "in_progress" : "In Progress",
     "completed" : "Completed"
 }
+
+export const PRIORITY_CLASS_MAP : Record<string, string>= {
+    'low' : 'bg-black',
+    'medium' : 'bg-yellow-600',
+    'high' : 'bg-amber-600'
+}
+
+export const PRIORITY_TEXT_MAP : Record<string , string>= {
+    "low" : "Low",
+    "medium" : "Medium",
+    "high" : "High"
+}

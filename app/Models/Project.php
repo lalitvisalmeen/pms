@@ -20,7 +20,7 @@ class Project extends Model
      * @return HasMany
      */
     public function tasks() : HasMany{
-        return $this->hasMany(Task::class);
+        return $this->hasMany(Task::class,'project_id','id');
     }
 
     /**

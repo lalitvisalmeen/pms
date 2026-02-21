@@ -5,8 +5,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useTranslation } from "@/hooks/use-translation";
 import { TaskResponse, Tasks } from "@/types";
 import { Link, router } from "@inertiajs/react";
-import { index as taskIndex, edit as taskEdit, destroy as deleteTask} from '@/routes/task/index';
+import { index as taskIndex, edit as taskEdit, destroy as delTask, show as showTask} from '@/routes/task/index';
 import { STATUS_CLASS_MAP, STATUS_TEXT_MAP } from "@/constants";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import ConfirmDialog from "@/components/confirm-dialog";
 
 type TasksTableProps = {
     tasks : TaskResponse,
@@ -53,6 +56,12 @@ export default function TasksTable({tasks, queryParams,  hideColumn = false, url
         
     };
     const trans = useTranslation();
+    const [openDialog, setOpenDialog] = useState(false);
+    const [taskId, setTaskId] = useState(0);
+    const deleteTask = (taskId: number) => {
+       setOpenDialog(true);
+       setTaskId(taskId);
+    }
     return (
         <>
               <div className='overflow-auto'> 
@@ -126,7 +135,9 @@ export default function TasksTable({tasks, queryParams,  hideColumn = false, url
                                     <img src={task.image_path} alt=" - " />
                                 </td>
                                {!hideColumn &&  <td className="px-3 py-2">{task.project.name}</td> }
-                                <td className="px-3 py-2">{task.name}</td>
+                               <th className="px-3 py-2 hover:underline text- text-nowrap">
+                                                                   <Link href={showTask.url(task.id)}> {task.name}</Link>
+                                                                   </th>
                                 <td className="px-3 py-2">
                                     <span className={
                                         "px-2 py-1 rounded text-white font-bold " + STATUS_CLASS_MAP[task.status]
@@ -135,13 +146,14 @@ export default function TasksTable({tasks, queryParams,  hideColumn = false, url
                                 <td className="px-3 py-2">{task.created_at}</td>
                                 <td className="px-3 py-2">{task.due_date}</td>
                                 <td className="px-3 py-2">{task.createdBy.name}</td>
-                                <td className="px-3 py-2">
+                                <td className="px-3 py-2 text-nowrap">
                                     <Link href= {taskEdit(task.id).url} 
                                     className="font-medium text-blue-600 hover:underline mx-1">
                                         {trans("actions_btn.edit")}</Link>
-                                         <Link href= {deleteTask(task.id).url} 
-                                    className="font-medium text-red-600 hover:underline mx-1">
-                                        {trans("actions_btn.delete")}</Link>
+                                        <Button onClick = {() => deleteTask(task.id)}
+                                        className="font-medium text-red-600 bg-transparent border-0 p-0 outline-none ring-0 ring-offset-0 shadow-none hover:underline hover:bg-transparent mx-1 focus:outline-none">
+                                           {trans("actions_btn.delete")} 
+                                        </Button>
                                 </td>
                             </tr>
                             ))}
@@ -150,6 +162,14 @@ export default function TasksTable({tasks, queryParams,  hideColumn = false, url
                 </table>
             {/*} <pre> {JSON.stringify(tasks,null,2)}</pre> */}
             </div>
+            {openDialog && <ConfirmDialog message={trans('confirm_delete_msg')}
+                                onCancel={() => setOpenDialog(false)}
+                                onConfirm={() => {
+                                    setOpenDialog(false);
+                                    router.delete(delTask.url(taskId));
+                                }}>
+            
+                            </ConfirmDialog>}
             <Pagination links={tasks.meta.links} />
         </>
     );
