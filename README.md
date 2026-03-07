@@ -4,15 +4,15 @@ A full-stack Project Management System built using Laravel and React that allows
 The application enables users to create projects, manage tasks, assign responsibilities, and track progress throughout the task lifecycle.
 
 # Technologies used
-Backend
-PHP 8
-Laravel 12
-MySQL
+### Backend
+1. PHP 8
+2. Laravel 12
+3. MySQL
 
-Frontend
-React
-TypeScript
-TailwindCSS
+### Frontend
+1. React
+2. TypeScript
+3. TailwindCSS
 # Features
 1. Create and manage projects
 2. Create, update, and delete tasks
